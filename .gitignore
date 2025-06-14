@@ -1,3 +1,18 @@
+# Ignorar la carpeta .terraform que contiene estado local y plugins
 .terraform/
+
+# Ignorar archivos de estado y variables sensibles
+*.tfstate
+*.tfstate.backup
+terraform.tfvars
+terraform.tfvars.json
+
+# Ignorar claves privadas
 mi_clave_aws
-mi_clave_aws.pub
+
+# Ignorar archivos de log y otros temporales
+*.log
+
+# Ignorar archivos de backup o swap del editor
+*~
+*.swp
