@@ -159,3 +159,11 @@ resource "aws_instance" "web" {
     Name = "Servidor_Web"
   }
 }
+
+output "IP_privada_servidor" {
+  value = aws_instance.web.private_ip
+}
+
+output "ID_servidor" {
+  value = aws_instance.web.id
+}
