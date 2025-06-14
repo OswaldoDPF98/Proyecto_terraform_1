@@ -6,6 +6,12 @@ provider "aws" {
 
 
 # 1. Crear una VPC
+
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+}
+
+
 # 2. Crear un Internet Gateway
 # 3. Crear una Subnet
 # 4. Crear una Route Table
