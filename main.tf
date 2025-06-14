@@ -28,21 +28,21 @@ resource "aws_internet_gateway" "gw" {
 
 resource "aws_subnet" "subred_1" {
   vpc_id     = aws_vpc.vpc_produccion.id
-  cidr_block = var.prefijo_subred[0]
+  cidr_block = var.prefijo_subred[0].cidr_block
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "subred_produccion"
+    Name = var.prefijo_subred[0].name
   }
 }
 
 resource "aws_subnet" "subred_2" {
   vpc_id     = aws_vpc.vpc_produccion.id
-  cidr_block = var.prefijo_subred[1]
+  cidr_block = var.prefijo_subred[1].cidr_block
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "subred_desarrollo"
+    Name = var.prefijo_subred[1].name
   }
 }
 
