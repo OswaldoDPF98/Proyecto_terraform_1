@@ -54,6 +54,13 @@ resource "aws_route_table" "tabla_de_ruta" {
 
 
 # 5. Asociar la Route Table a la Subnet
+
+resource "aws_route_table_association" "a" {
+  subnet_id      = aws_subnet.subred_1.id
+  route_table_id = aws_route_table.tabla_de_ruta.id
+}
+
+
 # 6. Crear un grupo de seguridad para los puertos 22, 443 y 80
 # 7. Crear un Network Interface con una IP en la Subnet creada en el paso 3
 # 8. Asignar una IP elástica al Network Interface creado en el paso 7
