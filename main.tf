@@ -100,11 +100,15 @@ resource "aws_security_group" "permitir_trafico_web" {
   }
 
   tags = {
-    Name = "allow_tls"
+    Name = "permitir_trafico_web"
   }
 }
 
 
 # 7. Crear un Network Interface con una IP en la Subnet creada en el paso 3
+
+
+
+
 # 8. Asignar una IP elástica al Network Interface creado en el paso 7
 # 9. Crear un servidor ubuntu e instalar/habilitar apache2
