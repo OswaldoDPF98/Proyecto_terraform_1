@@ -107,7 +107,11 @@ resource "aws_security_group" "permitir_trafico_web" {
 
 # 7. Crear un Network Interface con una IP en la Subnet creada en el paso 3
 
-
+ resource "aws_network_interface" "Interface_de_red" {
+  subnet_id       = aws_subnet.subred_1.id
+  private_ips     = ["10.0.1.50"]
+  security_groups = [aws_security_group.permitir_trafico_web.id]
+}
 
 
 # 8. Asignar una IP elástica al Network Interface creado en el paso 7
