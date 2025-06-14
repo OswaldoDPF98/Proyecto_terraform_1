@@ -125,3 +125,28 @@ resource "aws_eip" "IP_elastica" {
 
 
 # 9. Crear un servidor ubuntu e instalar/habilitar apache2
+
+resource "aws_instance" "web" {
+  ami           = ami-0a9115d9e297c6103
+  instance_type = "t2.micro"
+  availability_zone = "us-east-1a"
+  key_name = "demo_par_claves"
+
+  network_interface {
+    network_interface_id = aws_network_interface.Interface_de_red.id
+    device_index         = 0
+  }
+
+  user_data = <<-EOF
+              #!/bin/bash
+              apt-get update
+              apt-get install -y apache2
+              systemctl enable apache2
+              systemctl start apache2
+              bash -c 'echo "<h1>¡Hola, mundo!</h1>" > /var/www/html/index.html'
+              EOF
+
+  tags = {
+    Name = "Servidor_Web"
+  }
+}
