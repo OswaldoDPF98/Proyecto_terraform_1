@@ -64,7 +64,7 @@ resource "aws_route_table_association" "a" {
 
 resource "aws_security_group" "permitir_trafico_web" {
   name        = "permitir_trafico_web"
-  description = "Permitir tráfico web"
+  description = "Permitir trafico web"
   vpc_id      = aws_vpc.vpc_produccion.id
 
   ingress {
