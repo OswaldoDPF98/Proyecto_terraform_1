@@ -3,6 +3,11 @@ provider "aws" {
   region  = "us-east-1"
 }
 
+variable "prefijo_subred" {
+  description = "cidr_block de la subred"
+  #default = 
+  #type = String
+}
 
 
 # 1. Crear una VPC
@@ -22,7 +27,7 @@ resource "aws_internet_gateway" "gw" {
 
 resource "aws_subnet" "subred_1" {
   vpc_id     = aws_vpc.vpc_produccion.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.prefijo_subred
   availability_zone = "us-east-1a"
 
   tags = {
