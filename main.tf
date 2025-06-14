@@ -7,7 +7,7 @@ provider "aws" {
 
 # 1. Crear una VPC
 
-resource "aws_vpc" "main" {
+resource "aws_vpc" "vpc_produccion" {
   cidr_block = "10.0.0.0/16"
 }
 
@@ -17,7 +17,6 @@ resource "aws_vpc" "main" {
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.vpc_produccion.id
 }
-
 
 # 3. Crear una Subnet
 
