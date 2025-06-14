@@ -62,6 +62,49 @@ resource "aws_route_table_association" "a" {
 
 
 # 6. Crear un grupo de seguridad para los puertos 22, 443 y 80
+
+resource "aws_security_group" "permitir_trafico_web" {
+  name        = "permitir_trafico_web"
+  description = "Permitir tráfico web"
+  vpc_id      = aws_vpc.vpc_produccion.id
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "allow_tls"
+  }
+}
+
+
 # 7. Crear un Network Interface con una IP en la Subnet creada en el paso 3
 # 8. Asignar una IP elástica al Network Interface creado en el paso 7
 # 9. Crear un servidor ubuntu e instalar/habilitar apache2
