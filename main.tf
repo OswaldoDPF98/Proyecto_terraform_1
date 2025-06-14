@@ -126,7 +126,7 @@ resource "aws_eip" "IP_elastica" {
 # 9. Crear un servidor ubuntu e instalar/habilitar apache2
 
 resource "aws_instance" "web" {
-  ami           = ami-0a9115d9e297c6103
+  ami = "ami-0a9115d9e297c6103"
   instance_type = "t2.micro"
   availability_zone = "us-east-1a"
   key_name = "demo_par_claves"
