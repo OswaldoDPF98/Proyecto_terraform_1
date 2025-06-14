@@ -6,7 +6,7 @@ provider "aws" {
 variable "prefijo_subred" {
   description = "cidr_block de la subred"
   #default = 
-  type = string
+  #type = string
 }
 
 
@@ -38,7 +38,7 @@ resource "aws_subnet" "subred_1" {
 
 resource "aws_subnet" "subred_2" {
   vpc_id     = aws_vpc.vpc_produccion.id
-  cidr_block = var.prefijo_subred[ 1]
+  cidr_block = var.prefijo_subred[1]
   availability_zone = "us-east-1a"
 
   tags = {
@@ -135,7 +135,9 @@ resource "aws_eip" "IP_elastica" {
   domain                    = "vpc"
   network_interface         = aws_network_interface.Interface_de_red.id
   associate_with_private_ip = "10.0.1.50"
-  depends_on = [ aws_internet_gateway.gw ]
+  depends_on = [
+    aws_instance.web  # <-- Espera a que la instancia esté creada
+  ]
 }
 
 output "servidor_IP_publica" {
