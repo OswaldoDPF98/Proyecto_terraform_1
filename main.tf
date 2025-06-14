@@ -105,7 +105,7 @@ resource "aws_security_group" "permitir_trafico_web" {
 }
 
 
-# 7. Crear un Network Interface con una IP en la Subnet creada en el paso 3
+# 7. Crear un Network Interface con una IP en la subred creada en el paso 3
 
  resource "aws_network_interface" "Interface_de_red" {
   subnet_id       = aws_subnet.subred_1.id
@@ -115,4 +115,13 @@ resource "aws_security_group" "permitir_trafico_web" {
 
 
 # 8. Asignar una IP elástica al Network Interface creado en el paso 7
+
+resource "aws_eip" "IP_elastica" {
+  domain                    = "vpc"
+  network_interface         = aws_network_interface.Interface_de_red.id
+  associate_with_private_ip = "10.0.1.50"
+  depends_on = [ aws_internet_gateway.gw ]
+}
+
+
 # 9. Crear un servidor ubuntu e instalar/habilitar apache2
