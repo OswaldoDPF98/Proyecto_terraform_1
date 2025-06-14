@@ -122,6 +122,11 @@ resource "aws_eip" "IP_elastica" {
   depends_on = [ aws_internet_gateway.gw ]
 }
 
+output "servidor_IP_publica" {
+  value = aws_eip.IP_elastica.public_ip
+  
+}
+
 
 # 9. Crear un servidor ubuntu e instalar/habilitar apache2
 

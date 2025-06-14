@@ -9,6 +9,7 @@ terraform.tfvars.json
 
 # Ignorar claves privadas
 mi_clave_aws
+Oswaldo_accessKeys.csv
 
 # Ignorar archivos de log y otros temporales
 *.log
