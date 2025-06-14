@@ -6,7 +6,7 @@ provider "aws" {
 variable "prefijo_subred" {
   description = "cidr_block de la subred"
   #default = 
-  #type = String
+  type = string
 }
 
 
@@ -23,6 +23,7 @@ resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.vpc_produccion.id
 }
 
+
 # 3. Crear una Subnet
 
 resource "aws_subnet" "subred_1" {
@@ -31,7 +32,17 @@ resource "aws_subnet" "subred_1" {
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "subnet_1"
+    Name = "subred_produccion"
+  }
+}
+
+resource "aws_subnet" "subred_2" {
+  vpc_id     = aws_vpc.vpc_produccion.id
+  cidr_block = var.prefijo_subred
+  availability_zone = "us-east-1a"
+
+  tags = {
+    Name = "subred_desarrollo"
   }
 }
 
