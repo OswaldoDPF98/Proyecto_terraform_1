@@ -33,6 +33,26 @@ resource "aws_subnet" "subred_1" {
 
 
 # 4. Crear una Route Table
+
+resource "aws_route_table" "tabla_de_ruta" {
+  vpc_id = aws_vpc.vpc_produccion.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw.id
+  }
+
+  route {
+    ipv6_cidr_block        = "::/0"
+    egress_only_gateway_id = aws_internet_gateway.gw.id
+  }
+
+  tags = {
+    Name = "Tabla de Ruta"
+  }
+}
+
+
 # 5. Asociar la Route Table a la Subnet
 # 6. Crear un grupo de seguridad para los puertos 22, 443 y 80
 # 7. Crear un Network Interface con una IP en la Subnet creada en el paso 3
