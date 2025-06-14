@@ -20,6 +20,18 @@ resource "aws_internet_gateway" "gw" {
 
 
 # 3. Crear una Subnet
+
+resource "aws_subnet" "subred_1" {
+  vpc_id     = aws_vpc.vpc_produccion.id
+  cidr_block = "10.0.1.0/24"
+  availability_zone = "us-east-1a"
+
+  tags = {
+    Name = "subnet_1"
+  }
+}
+
+
 # 4. Crear una Route Table
 # 5. Asociar la Route Table a la Subnet
 # 6. Crear un grupo de seguridad para los puertos 22, 443 y 80
