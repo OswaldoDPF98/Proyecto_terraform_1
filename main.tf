@@ -13,6 +13,12 @@ resource "aws_vpc" "main" {
 
 
 # 2. Crear un Internet Gateway
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.vpc_produccion.id
+}
+
+
 # 3. Crear una Subnet
 # 4. Crear una Route Table
 # 5. Asociar la Route Table a la Subnet
