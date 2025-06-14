@@ -134,7 +134,7 @@ resource "aws_instance" "web" {
   ami = "ami-0a9115d9e297c6103"
   instance_type = "t2.micro"
   availability_zone = "us-east-1a"
-  key_name = "demo_par_claves"
+  key_name = aws_key_pair.mi_clave.key_name
 
   network_interface {
     network_interface_id = aws_network_interface.Interface_de_red.id
